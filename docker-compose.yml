@@ -1,0 +1,36 @@
+version: '3'
+services:
+  core:
+    image: hesabfun/core:latest
+    depends_on:
+      - db
+    ports:
+      - "6080:8080"
+    environment:
+      GIN_MODE: release
+      MYSQL_DATABASE: hesabfun
+      MYSQL_ADDRESS: db
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root_pasword
+      MYSQL_PORT: 3306
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pasword
+      MYSQL_DATABASE: hesabfun
+    volumes:
+      - /hesabfun/mysql:/var/lib/mysql
+
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+#    ports:
+#      - "6082:80"
+    environment:
+      PMA_HOST: db
+
+  doc:
+    image: hesabfun/doc:latest
+    ports:
+      - "6081:80"
