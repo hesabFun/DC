@@ -35,6 +35,6 @@ services:
       PMA_HOST: db
 
   doc:
-    image: hesabfun/doc:latest
+    image: hesabfun/docs:latest
     ports:
       - "6081:80"
