@@ -17,8 +17,9 @@ services:
   db:
     image: mariadb
     restart: always
+    env_file:
+      - core.env
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: hesabfun
     volumes:
       - /hesabfun/mysql:/var/lib/mysql
