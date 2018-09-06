@@ -6,7 +6,7 @@ services:
     depends_on:
       - db
     ports:
-      - "6080:80"
+      - "6081:80"
     env_file:
       - core.env
     environment:
@@ -33,7 +33,7 @@ services:
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "6082:80"
+      - "6083:80"
     environment:
       PMA_HOST: db
 
@@ -41,4 +41,10 @@ services:
     image: hesabfun/docs:latest
     restart: always
     ports:
-      - "6081:80"
+      - "6082:80"
+
+  ui:
+    image: hesabfun/ui:latest
+    restart: always
+    ports:
+      - "6080:80"
