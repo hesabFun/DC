@@ -5,9 +5,10 @@ services:
     depends_on:
       - db
     ports:
-      - "6080:8080"
+      - "6080:80"
     environment:
       GIN_MODE: release
+      PORT: 80
       MYSQL_DATABASE: hesabfun
       MYSQL_ADDRESS: db
       MYSQL_USERNAME: root
