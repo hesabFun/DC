@@ -3,11 +3,10 @@ services:
   core:
     image: hesabfun/core:latest
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "6080:8080"
-    update_config:
-      delay: 10s
     environment:
       GIN_MODE: release
       MYSQL_DATABASE: hesabfun
@@ -24,6 +23,10 @@ services:
       MYSQL_DATABASE: hesabfun
     volumes:
       - /hesabfun/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
