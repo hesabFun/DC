@@ -14,6 +14,7 @@ services:
       MYSQL_ADDRESS: db
       MYSQL_USERNAME: root
       MYSQL_PORT: 3306
+      PORT: 80
 
   db:
     image: mariadb
