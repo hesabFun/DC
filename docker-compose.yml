@@ -6,10 +6,8 @@ services:
       - db
     ports:
       - "6080:8080"
-    deploy:
-      replicas: 1
-      update_config:
-        delay: 10s
+    update_config:
+      delay: 10s
     environment:
       GIN_MODE: release
       MYSQL_DATABASE: hesabfun
