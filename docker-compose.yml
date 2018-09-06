@@ -2,6 +2,7 @@ version: '3'
 services:
   core:
     image: hesabfun/core:latest
+    restart: always
     depends_on:
       - db
     ports:
