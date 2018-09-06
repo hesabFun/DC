@@ -6,20 +6,19 @@ services:
       - db
     ports:
       - "6080:80"
+    env_file:
+      - core.env
     environment:
-      GIN_MODE: release
-      PORT: 80
       MYSQL_DATABASE: hesabfun
       MYSQL_ADDRESS: db
       MYSQL_USERNAME: root
-      MYSQL_PASSWORD: root_pasword
       MYSQL_PORT: 3306
 
   db:
     image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root_pasword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: hesabfun
     volumes:
       - /hesabfun/mysql:/var/lib/mysql
