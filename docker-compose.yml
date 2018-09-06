@@ -6,6 +6,10 @@ services:
       - db
     ports:
       - "6080:8080"
+    deploy:
+      replicas: 1
+        update_config:
+          delay: 10s
     environment:
       GIN_MODE: release
       MYSQL_DATABASE: hesabfun
@@ -25,8 +29,8 @@ services:
 
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
-#    ports:
-#      - "6082:80"
+    ports:
+      - "6082:80"
     environment:
       PMA_HOST: db
 
