@@ -34,7 +34,7 @@ services:
     environment:
       PMA_HOST: db
 
-  doc:
+  docs:
     image: hesabfun/docs:latest
     ports:
       - "6081:80"
