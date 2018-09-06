@@ -3,8 +3,7 @@ services:
   core:
     image: hesabfun/core:latest
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     ports:
       - "6080:8080"
     environment:
