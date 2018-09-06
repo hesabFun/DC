@@ -19,7 +19,7 @@ services:
     image: mariadb
     restart: always
     env_file:
-      - core.env
+      - db.env
     environment:
       MYSQL_DATABASE: hesabfun
     volumes:
@@ -38,5 +38,6 @@ services:
 
   docs:
     image: hesabfun/docs:latest
+    restart: always
     ports:
       - "6081:80"
