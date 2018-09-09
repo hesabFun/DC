@@ -1,3 +1,5 @@
 /.idea
 core.env
 db.env
+private.pem
+public.pem
