@@ -1,5 +1,5 @@
 /.idea
-core.env
-db.env
+.env.example
 private.pem
 public.pem
+volumes

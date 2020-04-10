@@ -4,58 +4,51 @@ services:
     image: hesabfun/core:latest
     restart: always
     depends_on:
-      - db
+      - postgres
+      - redis
     ports:
-      - "6081:80"
-    env_file:
-      - core.env
+      - "6080:80"
     secrets:
       - private_key
       - public_key
     environment:
-      MYSQL_DATABASE: hesabfun
-      MYSQL_ADDRESS: db
-      MYSQL_USERNAME: root
-      MYSQL_PORT: 3306
-      PORT: 80
-      JWT_RSA_PRIVATE_KEY_PATH: /run/secrets/private_key
-      JWT_RSA_PUBLIC_KEY_PATH: /run/secrets/public_key
+      E_SERVICES_POSTGRES_USER: "${POSTGRES_USER}"
+      E_SERVICES_POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      E_SERVICES_POSTGRES_DB: "${POSTGRES_DB}"
+      E_SERVICES_POSTGRES_HOST: postgres
+      E_SERVICES_REDIS_ADDRESS: redis
+      E_SERVICES_REDIS_PASSWORD: "${REDIS_PASSWORD}"
 
-  db:
-    image: mariadb
+  #      JWT_RSA_PRIVATE_KEY_PATH: /run/secrets/private_key
+  #      JWT_RSA_PUBLIC_KEY_PATH: /run/secrets/public_key
+
+  postgres:
+    image: postgres:latest
     restart: always
-    env_file:
-      - db.env
-    environment:
-      MYSQL_DATABASE: hesabfun
     volumes:
-      - /hesabfun/mysql:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
+      - ./volumes/postgresql:/var/lib/postgresql/data
 
-  phpMyAdmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - "6083:80"
-    environment:
-      PMA_HOST: db
-
-  docs:
-    image: hesabfun/docs:latest
+  redis:
+    image: redis:latest
     restart: always
-    ports:
-      - "6082:80"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - ./volumes/redis:/data
 
   ui:
     image: hesabfun/ui:latest
     restart: always
     ports:
-      - "6080:80"
+      - "6081:80"
+
+  template:
+    image: hesabfun/ui:html_css
+    restart: always
+    ports:
+      - "6082:80"
 
 secrets:
   private_key:
-    file: ./private.pem
+    file: ./jwtRS256.key
   public_key:
-      file: ./public.pem
+    file: ./jwtRS256.key.pub
