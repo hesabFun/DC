@@ -8,9 +8,6 @@ services:
       - redis
     ports:
       - "6080:80"
-    secrets:
-      - private_key
-      - public_key
     environment:
       E_SERVICES_POSTGRES_USER: "${POSTGRES_USER}"
       E_SERVICES_POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
