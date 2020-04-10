@@ -9,9 +9,9 @@ services:
     ports:
       - "6080:80"
     environment:
+      E_SERVICES_POSTGRES_DB: "${POSTGRES_DB}"
       E_SERVICES_POSTGRES_USER: "${POSTGRES_USER}"
       E_SERVICES_POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      E_SERVICES_POSTGRES_DB: "${POSTGRES_DB}"
       E_SERVICES_POSTGRES_HOST: postgres
       E_SERVICES_REDIS_ADDRESS: redis
       E_SERVICES_REDIS_PASSWORD: "${REDIS_PASSWORD}"
@@ -21,6 +21,10 @@ services:
     restart: always
     volumes:
       - ./volumes/postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
 
   redis:
     image: redis:latest
