@@ -8,6 +8,8 @@ services:
       - redis
     ports:
       - "6080:80"
+    env_file:
+      - .env
     environment:
       E_SERVICES_POSTGRES_DB: "${POSTGRES_DB}"
       E_SERVICES_POSTGRES_USER: "${POSTGRES_USER}"
