@@ -1,5 +1,5 @@
 /.idea
-.env.example
+.env
 private.pem
 public.pem
 volumes
