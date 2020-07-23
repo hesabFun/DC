@@ -42,6 +42,6 @@ services:
   template:
     image: hesabfun/template:latest
     restart: always
-    command: live-server public --port=80
+    command: bash -c "npm run build && live-server public --port=80"
     ports:
       - "6082:80"
