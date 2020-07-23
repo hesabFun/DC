@@ -40,7 +40,7 @@ services:
       - "6081:80"
 
 #  template:
-#    image: hesabfun/ui:html_css
+#    image: hesabfun/template:latest
 #    restart: always
 #    ports:
 #      - "6082:80"
