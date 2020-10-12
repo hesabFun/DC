@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  core:
+  engine:
     image: hesabfun/engine:latest
     restart: always
     depends_on:
