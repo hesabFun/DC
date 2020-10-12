@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   core:
-    image: hesabfun/core:latest
+    image: hesabfun/engine:latest
     restart: always
     depends_on:
       - postgres
@@ -10,6 +10,8 @@ services:
       - "6080:80"
     env_file:
       - .env
+    command:
+      - /bin/server.sh
     environment:
       E_SERVICES_POSTGRES_DB: "${POSTGRES_DB}"
       E_SERVICES_POSTGRES_USER: "${POSTGRES_USER}"
