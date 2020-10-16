@@ -20,7 +20,7 @@ services:
       E_SERVICES_REDIS_ADDRESS: redis
       E_SERVICES_REDIS_PASSWORD: "${REDIS_PASSWORD}"
 
-  postgres:
+  postgresql:
     image: postgres:latest
     restart: always
     volumes:
