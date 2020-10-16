@@ -4,7 +4,7 @@ services:
     image: hesabfun/engine:latest
     restart: always
     depends_on:
-      - postgres
+      - postgresql
       - redis
     ports:
       - "6080:80"
